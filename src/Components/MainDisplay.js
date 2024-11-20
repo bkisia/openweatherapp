@@ -19,7 +19,9 @@ import snow from '../images/13d.svg';
 import snown from '../images/13n.svg';
 import mist from '../images/50d.svg';
 import mistn from '../images/50n.svg';
-
+import locationIcon from '../images/locationicon.svg';
+import locationIcon2 from '../images/locationicon2.svg';
+import locationIcon3 from '../images/locationicon3.svg';
 
 
 
@@ -96,6 +98,12 @@ import mistn from '../images/50n.svg';
         const search = () => {
           setCity(searchRef.current.value);
         };
+
+        const handleKeyDown = (event) => {
+          if (event.key === 'Enter') {
+              search();
+          }
+      };
       
         const formatDateTime = (unixTime) => {
           const date = new Date(unixTime * 1000);
@@ -141,10 +149,12 @@ import mistn from '../images/50n.svg';
                       placeholder="Search City"
                       className="search-bar"
                       ref={searchRef}
+                      onKeyDown={handleKeyDown}
                     />
                     <button className="search-button" onClick={search}>
                       Search
                     </button>
+                    <button className="location-button" onClick={getCurrentLocation}><img src={locationIcon3} alt="location" className="location-icon" /></button> {/* new*/}
                   </div>
                   <span className="time-temp">
                     <h2>{weather.dt ? formatDateTime(weather.dt) : ""}</h2>
